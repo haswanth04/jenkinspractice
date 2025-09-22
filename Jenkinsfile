@@ -42,9 +42,7 @@ pipeline {
                 if exist "C:\\Program Files\\Apache Software Foundation\\Tomcat 10.1\\webapps\\TaskManager*.war" (
                     del /Q "C:\\Program Files\\Apache Software Foundation\\Tomcat 10.1\\webapps\\TaskManager*.war"
                 )
-                if exist "C:\\Program Files\\Apache Software Foundation\\Tomcat 10.1\\webapps\\TaskManager*" (
-                    rmdir /S /Q "C:\\Program Files\\Apache Software Foundation\\Tomcat 10.1\\webapps\\TaskManager*"
-                )
+                for /D %%G in ("C:\\Program Files\\Apache Software Foundation\\Tomcat 10.1\\webapps\\TaskManager*") do rmdir /S /Q "%%G"
                 copy "TaskManager\\target\\*.war" "C:\\Program Files\\Apache Software Foundation\\Tomcat 10.1\\webapps\\"
                 '''
             }

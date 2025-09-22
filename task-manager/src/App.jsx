@@ -6,7 +6,7 @@ import './App.css';
 
 function App() {
   return (
-    <Router basename="/reacttaskmanager">
+    <Router basename="/reacttaskmanager/">
       <div className="App">
         <Routes>
           <Route path="/" element={<TaskList />} />
