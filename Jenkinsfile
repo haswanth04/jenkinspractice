@@ -39,10 +39,12 @@ pipeline {
         stage('Deploy Backend to Tomcat') {
             steps {
                 bat '''
-                if exist "C:\\Program Files\\Apache Software Foundation\\Tomcat 10.1\\webapps\\TaskManager*.war" (
-                    del /Q "C:\\Program Files\\Apache Software Foundation\\Tomcat 10.1\\webapps\\TaskManager*.war"
+                if exist "C:\\Program Files\\Apache Software Foundation\\Tomcat 10.1\\webapps\\TaskManager-0.0.1-SNAPSHOT.war" (
+                    del /Q "C:\\Program Files\\Apache Software Foundation\\Tomcat 10.1\\webapps\\TaskManager-0.0.1-SNAPSHOT.war"
                 )
-                for /D %%G in ("C:\\Program Files\\Apache Software Foundation\\Tomcat 10.1\\webapps\\TaskManager*") do rmdir /S /Q "%%G"
+                if exist "C:\\Program Files\\Apache Software Foundation\\Tomcat 10.1\\webapps\\TaskManager-0.0.1-SNAPSHOT" (
+                    rmdir /S /Q "C:\\Program Files\\Apache Software Foundation\\Tomcat 10.1\\webapps\\TaskManager-0.0.1-SNAPSHOT"
+                )
                 copy "TaskManager\\target\\*.war" "C:\\Program Files\\Apache Software Foundation\\Tomcat 10.1\\webapps\\"
                 '''
             }
